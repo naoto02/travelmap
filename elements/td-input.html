@@ -1,0 +1,25 @@
+<!-- Controller-->
+<link rel="import" href="/bower_components/polymer/polymer.html">
+
+<polymer-element name="td-input" extends="input" attributes="todoData" on-keyup={{keyupAction}}>
+
+	<script>
+			// Use keyup action because keypress doesn't work for ESC.
+			var ENTER = 13;
+			var ESC = 27;
+			Polymer('td-input', {
+				keyupAction: function(e, detail, sender){
+					if(e.keyCode === ENTER){
+						this.fire('td-commit');
+						// alert("ENTER-PRESSED");
+					}
+					else if(e.keyCode === ESC){
+						this.fire('td-cancel');
+						// alert("ESC-PRESSED");
+					}
+				}
+			});
+	</script>
+</polymer-element>
+
+

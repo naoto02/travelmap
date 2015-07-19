@@ -1,0 +1,222 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+  	<!--
+    <script src="bower_components/platform/platform.js"></script>
+    -->
+    <script src="bower_components/webcomponentsjs/webcomponents.min.js"></script>
+    <link rel="import" href="bower_components/polymer/polymer.html">
+    <link rel="import" href="elements/proto-element.html">
+    <link rel="import" href="elements/age-slider.html">
+    <link rel="import" href="elements/color-picker.html">
+    <link rel="import" href="elements/view-ajax.html">
+    <link rel="import" href="elements/td-todos.html">
+    <link rel="import" href="bower_components/google-chart/google-chart.html">
+    <link rel="import" href="bower_components/core-toolbar/core-toolbar.html">
+    <link rel="import" href="bower_components/core-icons/core-icons.html">
+	  <link rel="import" href="bower_components/paper-tabs/paper-tabs.html">
+	  <link rel="import" href="bower_components/paper-icon-button/paper-icon-button.html">
+	  <link rel="import" href="bower_components/core-scaffold/core-scaffold.html">
+	  <link rel="import" href="bower_components/core-header-panel/core-header-panel.html">
+	  <link rel="import" href="bower_components/core-toolbar/core-toolbar.html">
+	  <link rel="import" href="bower_components/core-menu/core-menu.html">
+	  <link rel="import" href="bower_components/core-item/core-item.html">
+		<link rel="import" href="bower_components/core-selector/core-selector.html">
+		<link rel="import" href="bower_components/paper-checkbox/paper-checkbox.html">
+		<link rel="import" href="bower_components/paper-input/paper-input.html">
+		<link rel="import" href="bower_components/core-field/core-field.html">
+
+		<link rel="stylesheet" href="main.css" shim-shadowdom>
+
+
+  </head>
+  <body unresolved>
+  
+		
+		<core-scaffold>
+			<core-header-panel mode="seamed" navigation flex>
+				<core-toolbar class="tall" style="background-image: url(images/test.jpg); background-size: contain;">
+					<div></div>
+					
+			  </core-toolbar>
+
+			  <section>		
+					<core-menu selected="0">
+						<core-item icon="settings" label="settings"></core-item>
+						<core-item icon="settings" label="settings"></core-item>
+					</core-menu>
+					
+					<!--
+					<paper-input-decorator id="decorator" label={{label}} floatinglabel="Search Contry Name" value layout vertical>
+						<input is="core-input" id="input" committedvalue="{{committedValue}}" on-change="{{ changeAction }}" placeholder="Search Country Name" aria-label="floating label">
+					</paper-input-decorator>
+					-->
+
+<!-- 					<div horizontal layout>
+
+						<paper-input-decorator flex class="searchbox" floatingLabel label="Search Country">
+							<input is="core-input">
+						</paper-input-decorator>							
+						
+					</div> -->
+
+<!-- 					<br>
+
+					<div class="search-item" layout horizontal>
+						<core-icon icon="icons:search" class="search-icon"></core-icon>
+						<paper-input flex class="searchbox" label="Search Country">
+							<input is="core-input">
+						</paper-input>							
+					</div>
+
+					<br> -->
+
+					<div lauout horizontal>
+						<td-todos></td-todos>
+					</div>
+
+					<br>
+
+					<core-selector class="item" selected="{{multiSelected}}" multi>
+						<div>Item 1</div>
+						<div>Item 2</div>
+						<div>Item 3</div>
+					</core-selector>
+					<br>
+			  </section>
+			</core-header-panel>
+
+			<div tool>Title</div>
+			<div>
+
+					<div layout horizontal>
+						<paper-input class="searchbox" label="Search Country">
+							<input is="core-input">
+						</paper-input>							
+						<core-icon icon="icons:search"></core-icon>
+			</div>
+
+
+<!-- <template is="auto-binding"> -->
+ 		<div vertical layout>
+ 			<div vertical layout center style="padding:50px 0px 0px 0px;">
+ 				<div>
+ 					<div>
+					  <google-chart 
+					  	id="jsonTest"
+					    type='geo'
+					    height='500px'
+					    width='900px'
+							options='{"colorAxis": {"colors": ["00004d", "00004d"]}, 
+											  "legend": "none",
+											  "backgroundColor": {"fill": ["none"]}
+											}'
+					           >
+				  	</google-chart>
+		  		</div>
+		    </div>
+	  	</div>
+
+	  <script>
+  		// var dummyData = '[["Country", "Popularity"],["Japan", 200]]'
+  		// var dummyDataAdd = '["France",100]';
+  		// dummyData = dummyData.push(dummyDataAdd);
+
+  		var dummyData = [["Country", "Popularity"],["Japan", 200]];
+			// var dummyDataAdd = ["France",100];
+  	// 	dummyData.push(dummyDataAdd);
+  		dummyData = JSON.stringify(dummyData);
+  		// String(dummyData);
+  		
+			
+  	 	var countryData = document.getElementById('jsonTest');
+  		// countryData.data = [["Country", "Popularity"],["Japan", 200]];
+  		// countryData.data = dummyData;
+  		// var countryData = this.$['jsonTest'].data;
+  		countryData.setAttribute("data", dummyData);
+  		// console.log("countryData:"); 
+  		// console.log(countryData.data);
+
+  	</script>
+<!-- </template> -->
+
+	  	<div>
+	  		
+		    <h3>index.html</h3>
+		    This is text written in the index.html
+		    This is text written in the index.html<br>
+		    This is text written in the index.html
+		    This is text written in the index.html<br>
+		    This is text written in the index.html
+		    This is text written in the index.html<br>
+		    <br>
+		    <br>
+		    <br>
+		    <br>
+		    <br>
+		    <br>
+	  	</div>
+<!-- 
+	  	<div horizontal layout>
+				<div flex>
+				<google-chart
+		    type='geo'
+		    height='200px'
+		    width='300px'
+		    data='test_data.json'
+				options='{"colorAxis": {"colors": ["00004d", "00004d"]}, 
+									"legend": "none",
+									"region": "150"
+								}'
+		           >
+	  		</google-chart>
+				</div>
+
+				<div flex>
+				<google-chart
+		    type='geo'
+		    height='200px'
+		    width='300px'
+		    data='test_data.json'
+				options='{"colorAxis": {"colors": ["00004d", "00004d"]}, 
+									"legend": "none",
+									"region": "142"
+								}'
+		           >
+	  		</google-chart>					
+				</div>
+
+				<div flex>
+				<google-chart
+		    type='geo'
+		    height='200px'
+		    width='300px'
+		    data='test_data.json'
+				options='{"colorAxis": {"colors": ["00004d", "00004d"]}, 
+									"legend": "none",
+									"region": "021"
+								}'
+		           >
+	  		</google-chart>					
+				</div>
+	  	</div>
+
+		</div>
+ -->
+
+    <proto-element></proto-element>
+    <age-slider></age-slider>
+    <color-picker owner="Jack" color="red"></color-picker>
+    <view-ajax></view-ajax>
+		<!-- <td-todos></td-todos> -->
+
+
+    <h3>index.html</h3>
+    <p>This is text written in the index.html
+
+			</div>
+		</core-scaffold>
+	
+  </body>
+</html>

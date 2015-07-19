@@ -1,0 +1,101 @@
+<link rel="import" href="/bower_components/polymer/polymer.html">
+<!-- <link rel="import" href="td-input.html"> -->
+
+<polymer-element name="td-todos" attributes="item">
+	<template>
+
+<!--
+<input type="text" is='td-input' id="new-todo" value="{{todo}}" placeholder="What need to be done" autofocus on-td-commit={{commitAction}} on-td-cancel={{cancelAction}}>
+-->
+
+<!-- 
+    <input type="text" id="new-todo" value="{{todo}}" placeholder="What need to be done" autofocus on-td-commit={{commitAction}} on-td-cancel={{cancelAction}} on-keyup={{keyupAction}}>
+ -->
+
+		<!-- Input box for adding item -->
+		<div class="search-item" layout horizontal style="padding: 0px 0px 0px 10px;">
+			<core-icon icon="icons:search" class="search-icon" style="padding: 40px 0px 0px 0px;"></core-icon>
+			<paper-input flex class="searchbox" label="Add Country" type="text" id="new-todo" value="{{todo}}" placeholder="What need to be done" autofocus on-td-commit={{commitAction}} on-td-cancel={{cancelAction}} on-keyup={{keyupAction}} style="padding: 0 20px 0 5px;">
+				<input is="core-input">
+			</paper-input>							
+		</div>
+
+		<!-- List for items -->
+  	<ul style="list-style: none;">
+  		<template repeat="{{item in items}}" >
+  			<!-- Repeat following tag according to the number of item -->
+  			<div layout horizontal style="margin-top:1em; margin-bottom:1em;">
+  				<!-- <button on-click={{destroyAction}}></button> -->
+  				<paper-checkbox id="countryCB" for role="checkbox" tabindex="0" aria-checked="true" aria-labelledby="core-label-1" on-change="{{checkedAction}}" checked="{{item.checked}}"></paper-checkbox>
+	  			<li style="margin-left:0.5em;" on-dblclick={{destroyAction}}>{{item}}</li>
+	  			
+  			</div>
+  		</template>
+  	</ul>
+	
+</template>
+
+	<script>
+		// Use keyup action because keypress doesn't work for ESC.
+		var ENTER = 13;
+		var ESC = 27;
+		
+		Polymer('td-todos', {
+			ready: function(){
+				this.items = this.items || [];
+				this.items = ["Japan", "United Kingdom", "Spain", "France", "Sweden"];
+				this.preVisualData = [["Country", "Popularity"],["Spain", 200]]; 
+			},
+			commitAction: function(todo){
+				// var item = {name: 'Mike', age: '27'}; // working
+				// var item = document.querySelector('td-todos').todo; // working
+
+				var item = this.$['new-todo'].value;
+				item.checked = false;
+				console.log(item);
+				this.items.push(item);
+				this.$['new-todo'].value = "";
+
+	  		var dummyDataAdd = [item, 100];
+	  		this.preVisualData.push(dummyDataAdd);
+				console.log("preVisualData: " + this.preVisualData);
+				var visualData = JSON.stringify(this.preVisualData);
+				console.log(visualData);
+				var countryData = document.getElementById('jsonTest');
+	  		countryData.setAttribute("data", visualData);
+
+				// this.items = [
+				// 	{name: 'Mike', age: '25'},
+				// 	{name: 'Harvey', age: '33'}
+				// ];
+				
+				// this.items = ["data1", "data2"]
+			},
+			checkedAction: function(event, detail, sender) {
+					var item = sender.templateInstance.model.item;
+					console.log("checked!" + item);	
+				
+			},
+			cancelAction: function(){
+				this.$['new-todo'].value = "";
+			},
+			destroyAction: function(event, detail, sender){
+				var item = sender.templateInstance.model.item;
+				console.log("destroyAction: " + item);
+				this.items.splice(this.items.indexOf(item), 1);
+			},
+			keyupAction: function(e, detail, sender){
+				if(e.keyCode === ENTER){
+					// this.fire('td-commit');
+					this.commitAction();
+				}
+				else if(e.keyCode === ESC){
+					// this.fire('td-cancel');
+					this.cancelAction();
+				}
+			}
+		});
+	</script>
+</polymer-element>
+
+

@@ -1,0 +1,16 @@
+<link rel="import" href="/bower_components/polymer/polymer.html">
+
+<polymer-element name="color-picker" attributes="owner color">
+	<template>
+		<h3>Color-picker</h3>
+		This is {{owner}}'s color picker.<br>
+		He likes the color {{color}}.
+	</template>
+
+	<script>
+		Polymer({
+			color: "blue",
+			owner: "Daniel"
+		});
+	</script>
+</polymer-element>

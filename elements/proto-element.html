@@ -1,0 +1,24 @@
+<link rel="import"
+      href="/bower_components/polymer/polymer.html">
+
+<polymer-element name="proto-element">
+  <template>
+    <h3>Proto-element</h3>
+      I'm <b>proto-element</b>. Check out my prototype.<br>
+      This is {{owner}}'s name-tag element.
+      <span style="color: {{color}}">{{color}}</span>
+  </template>
+  <script>
+/*
+    Polymer('proto-element', {
+      ready: function() {
+        //...
+      }
+    });
+*/
+    Polymer({
+      owner: 'Daniel',
+      color: 'blue'
+    });
+  </script>
+</polymer-element>

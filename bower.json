@@ -1,0 +1,34 @@
+{
+  "name": "Polymer_Project",
+  "version": "0.0.0",
+  "authors": [
+    "Naoto Igarashi <naoto.stb@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^0.5"
+  },
+  "resolutions": {
+    "polymer": "^0.5",
+    "core-component-page": "^0.5",
+    "core-icon": "^0.5",
+    "core-iconset": "^0.5",
+    "core-icons": "^0.5",
+    "core-iconset-svg": "^0.5",
+    "paper-ripple": "^0.5",
+    "font-roboto": "^0.5",
+    "paper-checkbox": "~0.5.5",
+    "paper-radio-button": "^0.5",
+    "core-meta": "^0.5",
+    "core-style": "^0.5",
+    "core-input": "^0.5",
+    "paper-input": "~0.5.5"
+  }
+}

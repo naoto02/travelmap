@@ -1,0 +1,40 @@
+<link rel="import" href="/bower_components/polymer/polymer.html">
+<link rel="import"
+          href="/bower_components/core-ajax/core-ajax.html">
+
+<polymer-element name="view-ajax">
+	<template>
+		<core-ajax auto url="{{url}}" response="{{response}}"
+    handleAs="json"></core-ajax>
+		<p><h3>View-ajax</h3></p>
+		URL change fire ajax request.
+		<button on-click="{{changeURL}}">Change Ajax URL</button>
+		<p>City: {{response.results[0].formatted_address}}
+		<p>Latitude: {{response.results[0].geometry.location.lat}}
+		<p>Longtitude: {{response.results[0].geometry.location.lng}}
+
+	</template>
+
+	<script>
+		Polymer('view-ajax', {
+			ajax_flg: 0,
+			city: ["tokyo", "nagoya"],
+			url: "http://maps.google.com/maps/api/geocode/json?address=tokyo&sensor=false",
+			response: "test",
+			responseChanged: function(e){
+				console.log(this.response);
+			},
+			changeURL: function(){
+				if(this.ajax_flg){
+					this.ajax_flg = 0;
+				} else{
+					this.ajax_flg = 1;
+				}
+				this.url = "http://maps.google.com/maps/api/geocode/json?address=" + this.city[this.ajax_flg] + "&sensor=false";
+				console.log("Ajax URL has changed." + this.url);
+			}
+		});
+		//this.$.ajaxconnect.go();
+	</script>
+</polymer-element>
+
